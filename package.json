@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "react-beautiful-dnd": "^13.1.1",
+    "react-icons": "^4.7.1",
+    "react-tooltip": "^5.7.0"
+  },
+  "devDependencies": {
+    "@types/react-beautiful-dnd": "^13.1.3"
+  }
+}
