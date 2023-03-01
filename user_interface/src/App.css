@@ -1,15 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
 
-/*  
-    #223843
-    #EFF1F3
-    #DBD3D8
-    #D8B4A0
-    #D77A61
-*/
-
 body {
-    background-color: #EFF1F3;
+    background: url('https://i.redd.it/ocmwsw4qyy661.jpg');
+    backdrop-filter: blur(10px);
 }
 
 .App {
@@ -20,13 +13,13 @@ body {
 .head {
     position: fixed;
     width: 100%;
-    padding: 50px 0 20px 30px;
+    padding: 50px 20px 20px;
     top: 0;
-    background-color: #E7E7E7;
+    background-color: rgba(76, 95, 106, 0.6);
     border-bottom: 1px solid black;
 }
 
 h2 {
     text-align: center;
-    color: #223843;
+    color: rgba(243, 228, 226, 1);
 }

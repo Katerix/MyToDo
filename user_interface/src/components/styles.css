@@ -1,12 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,500&display=swap');
 
-@media (max-width: 1100px) {
-    .input {
-        width: 80%;
-    }
-}
-
 /*INPUT STYLES*/
 
 .input {
@@ -33,10 +27,15 @@
     margin: 0 0 0 10px;
     border-radius: 10px;
     border: none;
-    background-color: #D77A61;
-    opacity: 0.7;
+    background-color: #E28B7D;
+    backdrop-filter: blur(2px);
+    opacity: 0.8;
     font-size: 18px;
     text-align: center;
+}
+.input_submit:hover {
+    transform: scale(1.05);
+    opacity: 1;
 }
 
 /*SINGLE TODO STYLES*/
@@ -46,14 +45,14 @@
     width: 90%;
     margin: 8px 5px;
     padding: 15px;
-    background-color: #EFF1F3;
+    background-color: rgba(243, 228, 226, 1);
     font-size: 15px;
     border-radius: 20px;
     transition: 0.2s;
 }
 
     .todo-block:hover {
-        transform: scale(1.05);
+        transform: scale(1.03);
     }
 
 
@@ -69,23 +68,26 @@
     color: #223843;
 }
 
-.edit-todo-input { /*fix placeholder size and bg color + focus*/
+.edit-todo-input { /*fix placeholder size and bg color*/
     display: flex;
     border: 0px;
     background-color: none;
+    font-size: 20px;
 }
 
 /*LIST STYLES*/
 
 .container {
+    overflow-x: hidden;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    margin: 228px 0 0;
+    padding: 228px 0 25px;
 }
 
 .todos {
+    overflow-x: hidden;
     padding: 10px;
     margin: 15px;
     border-radius: 5px;
@@ -95,23 +97,31 @@
 }
 
 .created {
-    background-color: rgb(216, 180, 160, 0.6);
+    background-color: rgba(186, 133, 127, 0.9);
 }
 
 .inprogress {
-    background-color: rgb(216, 180, 160, 0.8);
+    background-color: rgba(155, 130, 132, 0.9)
 }
 
 .completed {
-    background-color: rgb(216, 180, 160, 1);
+    background-color: rgba(124, 130, 141, 0.9);
 }
 
 .subheader {
-    font-size: 30px;
+    font-size: 32px;
 }
 
 .dragactive {
-    background-color: rgb(0, 221, 236);
+    background-color: rgba(216, 180, 160, 0.6);
+}
+
+.dragcomplete {
+    background-color: rgb(216, 180, 160, 0.6);
+}
+
+.drag {
+    box-shadow: 0 0 20px black;
 }
 
 
@@ -126,17 +136,7 @@
         flex-direction: column;
     }
 
-    .created {
-        width: 80%;
-        margin-bottom: 10px;
-    }
-
-    .inprogress {
-        width: 80%;
-        margin-bottom: 10px;
-    }
-
-    .completed {
+    .todos {
         width: 80%;
         margin-bottom: 10px;
     }

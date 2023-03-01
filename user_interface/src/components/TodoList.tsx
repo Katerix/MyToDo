@@ -1,12 +1,12 @@
 import React from "react";
 import { Todo } from "../Model";
 import SingleToDo from "./SingleToDo";
-import "./styles.css";
+import { Droppable } from "react-beautiful-dnd";
 
 
 interface Properties {
-    todos: Array<Todo>;
-    setTodos: React.Dispatch<React.SetStateAction<Array<Todo>>>;
+    createdTodos: Array<Todo>;
+    setCreatedTodos: React.Dispatch<React.SetStateAction<Array<Todo>>>;
     inprogressTodos: Array<Todo>;
     setInprogressTodos: React.Dispatch<React.SetStateAction<Array<Todo>>>;
     completedTodos: Array<Todo>;
@@ -14,59 +14,82 @@ interface Properties {
 }
 
 const ToDoLIST: React.FC<Properties> = ({
-    todos, setTodos,
+    createdTodos, setCreatedTodos,
     inprogressTodos, setInprogressTodos,
     completedTodos, setCompletedTodos
 }) => {
-    const draggingOver = (event: React.DragEvent<HTMLDivElement>) => {
-
-    };
-
     return (
         <div className="container">
-            <div className="created todos"
-                
-            >
-                <span className="subheading">Created</span>
+            <Droppable droppableId="list1">
                 {
-                    todos?.map((todo, index) => (
-                        <SingleToDo
-                            index={index}
-                            todo={todo}
-                            todos={todos}
-                            key={todo.id}
-                            setTodos={setTodos} />
-                    ))
+                    (provided, snapshot) => (
+                        <div className={`todos ${snapshot.isDraggingOver ? "dragactive" : "created"}`}
+                            ref={provided.innerRef}
+                            {...provided.droppableProps}
+                        >
+                            <span className="subheading">Created</span>
+                            {
+                                createdTodos?.map((todo, index) => (
+                                    <SingleToDo
+                                        index={index}
+                                        todo={todo}
+                                        todos={createdTodos}
+                                        key={todo.id}
+                                        setTodos={setCreatedTodos}
+                                    />
+                                ))}
+                            {provided.placeholder}
+                        </div>
+                    )
                 }
-            </div>
-            <div className="inprogress todos"
-                 onDragOver={(event) => draggingOver(event)}
-            >
-                <span className="subheading">In progress</span>
+            </Droppable>
+            <Droppable droppableId="list2">
                 {
-                    inprogressTodos?.map((todo, index) => (
-                        <SingleToDo
-                            index={index}
-                            todo={todo}
-                            todos={inprogressTodos}
-                            key={todo.id}
-                            setTodos={setInprogressTodos} />
-                    ))
+                    (provided, snapshot) => (
+                        <div className={ `todos ${snapshot.isDraggingOver ? "dragcomplete": "inprogress"}`}
+                            ref={provided.innerRef}
+                            {...provided.droppableProps}
+                        >
+                            <span className="subheading">In progress</span>
+                            {
+                                inprogressTodos?.map((todo, index) => (
+                                    <SingleToDo
+                                        index={index}
+                                        todo={todo}
+                                        todos={inprogressTodos}
+                                        key={todo.id}
+                                        setTodos={setInprogressTodos} />
+                                ))
+                            }
+                            {provided.placeholder}
+                        </div>
+                    )
                 }
-            </div>
-            <div className="completed todos">
-                <span className="subheading">Completed</span>
+            </Droppable>
+            <Droppable droppableId="list3">
                 {
-                    completedTodos?.map((todo, index) => (
-                        <SingleToDo
-                            index={index}
-                            todo={todo}
-                            todos={completedTodos}
-                            key={todo.id}
-                            setTodos={setCompletedTodos} />
-                    ))
+                    (provided, snapshot) => (
+                        <div className={`todos ${snapshot.isDraggingOver ? "dragcomplete" : "completed"}`}
+                            ref={provided.innerRef}
+                            {...provided.droppableProps}
+                        >
+                            <span className="subheading">Completed</span>
+                            {
+                                completedTodos?.map((todo, index) => (
+                                    <SingleToDo
+                                        index={index}
+                                        todo={todo}
+                                        todos={completedTodos}
+                                        key={todo.id}
+                                        setTodos={setCompletedTodos} />
+                                ))
+                            }
+                            {provided.placeholder}
+                        </div>
+                    )
                 }
-            </div>
+            </Droppable>
+            
         </div>
     );
 };
